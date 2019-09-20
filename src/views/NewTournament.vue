@@ -1,124 +1,110 @@
 <template>
-<div>
-    <v-container>
-<h1> Create your tournament</h1>
-<v-card class="required-data">
-    <v-card-title>
-        <h2>Required Fields</h2>
-    </v-card-title>
-<v-form v-model="valid" @submit.prevent="saveTournament">
-    <v-container>
-      <v-row>
-        <v-col
-          cols="12"
-          md="4"
-        >
-          <v-text-field
-            v-model="selectedGame"      
-            label="SelectedGame"
-            name="selected-game"
-            required
-          ></v-text-field>
-        <!-- </v-col>
-        <v-col
-          cols="12"
-          md="4"
-        > -->
-          <v-text-field
-            v-model="Prize"      
-            label="Prize"
-            name="prize"
-            required
-          ></v-text-field>
-        <!-- </v-col>
-        <v-col
-          cols="12"
-          md="4"
-        > -->
-          <v-text-field
-            v-model="tournamentName"
-            label="TournamentName"
-            name="tournament-name"
-            required
-          ></v-text-field>
+  <div>
+    <h1> Create your tournament</h1>
+      <v-card class="required-data">
+        <v-card-title>
+          <h2>Required Fields</h2>
+        </v-card-title>
+        <v-form v-model="valid" @submit.prevent="saveTournament">
+          <v-row>
+            <v-col
+            cols="12"
+            md="4"
+            >
+              <v-text-field
+              v-model="selectedGame"      
+              label="SelectedGame"
+              name="selected-game"
+              required
+              ></v-text-field>
+              <!-- </v-col>
+              <v-col
+                cols="12"
+                md="4"
+              > -->
+              <v-text-field
+              v-model="Prize"      
+              label="Prize"
+              name="prize"
+              required
+              ></v-text-field>
+              <!-- </v-col>
+              <v-col
+                cols="12"
+                md="4"
+              > -->
+              <v-text-field
+              v-model="tournamentName"
+              label="TournamentName"
+              name="tournament-name"
+              required
+              ></v-text-field>
+            </v-col>
+            <v-col cols="6" sm="6" md="4">
+              <v-time-picker
+              v-if="menu2"
+              v-model="time"
+              full-width
+              @click:minute="$refs.menu.save(time)"
+              ></v-time-picker>
+                //removed menu
+            </v-col>
+            <div class="flex-grow-1"></div>
+              <v-col cols="11" sm="5">
+                <v-dialog
+                  ref="dialog"
+                  v-model="modal2"
+                  :return-value.sync="time"
+                  persistent
+                  full-width
+                  width="290px"
+                >
+                  <template v-slot:activator="{ on }">
+                    <v-text-field
+                      v-model="time"
+                      label="Picker in dialog"
+                      readonly
+                      v-on="on"
+                    ></v-text-field>
+                  </template>
+                  <v-time-picker
+                    v-if="modal2"
+                    v-model="time"
+                    full-width
+                  >
+                    <div class="flex-grow-1"></div>
+                    <v-btn text color="primary" @click="modal2 = false">Cancel</v-btn>
+                    <v-btn text color="primary" @click="$refs.dialog.save(time)">OK</v-btn>
+                  </v-time-picker>
+                </v-dialog>
+                <v-dialog
+                ref="dialog"
+                v-model="modal"
+                :return-value.sync="date"
+                persistent
+                full-width
+                width="290px"
+                >
+                <template v-slot:activator="{ on }">
+                  <v-text-field
+                    v-model="date"
+                    label="Picker in dialog"
+                    readonly
+                    v-on="on"
+                  ></v-text-field>
+                </template>
+                <v-date-picker v-model="date" scrollable>
+                  <div class="flex-grow-1"></div>
+                  <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
+                  <v-btn text color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
+                </v-date-picker>
+              </v-dialog>
+          </v-col>
         </v-col>
-
-       
-          <v-col cols="6" sm="6" md="4">
-     
-             
-       <v-time-picker
-          v-if="menu2"
-          v-model="time"
-          full-width
-          @click:minute="$refs.menu.save(time)"
-        ></v-time-picker>
-      </v-menu>
-    </v-col>
-    <div class="flex-grow-1"></div>
-    <v-col cols="11" sm="5">
-      <v-dialog
-        ref="dialog"
-        v-model="modal2"
-        :return-value.sync="time"
-        persistent
-        full-width
-        width="290px"
-      >
-        <template v-slot:activator="{ on }">
-          <v-text-field
-            v-model="time"
-            label="Picker in dialog"
-            readonly
-            v-on="on"
-          ></v-text-field>
-        </template>
-        <v-time-picker
-          v-if="modal2"
-          v-model="time"
-          full-width
-        >
-          <div class="flex-grow-1"></div>
-          <v-btn text color="primary" @click="modal2 = false">Cancel</v-btn>
-          <v-btn text color="primary" @click="$refs.dialog.save(time)">OK</v-btn>
-        </v-time-picker>
-      </v-dialog>
-
-
-
-      <v-dialog
-        ref="dialog"
-        v-model="modal"
-        :return-value.sync="date"
-        persistent
-        full-width
-        width="290px"
-      >
-        <template v-slot:activator="{ on }">
-          <v-text-field
-            v-model="date"
-            label="Picker in dialog"
-            readonly
-            v-on="on"
-          ></v-text-field>
-        </template>
-        <v-date-picker v-model="date" scrollable>
-          <div class="flex-grow-1"></div>
-          <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
-          <v-btn text color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
-        </v-date-picker>
-      </v-dialog>
-    </v-col>
-             </v-col>
-
-
-      
       </v-row>
     </v-container>
   </v-form>
 </v-card>
-
- 
 <v-card>
     <v-card-title>
         <h2>Optional Fields</h2>
@@ -134,12 +120,10 @@
      </v-img>
   <input accept="image/*" type="file" value="upload" @change="fileBtn(file, $event)">
 </v-card>
-
 <v-col>
-        <v-btn :disabled="!formIsValid" type="submit" >create tournament</v-btn>
-      </v-col>
-      
- </v-container>
+  <v-btn :disabled="!formIsValid" type="submit" >create tournament</v-btn>
+</v-col>
+  </v-container>
 </div> 
 </template>
 

@@ -1,35 +1,29 @@
 <template>
-<div class="finals">
-    
-             <v-col class="champcol"
-             
-       
-             >
- 
-             <v-card
-    max-width="400"
-    class="mb-10"
-  >
-    <v-list-item>
-      <v-list-item-avatar color="grey"></v-list-item-avatar>
-      <v-list-item-content>
-        <v-list-item-title class="headline">{{this.champion}}</v-list-item-title>
-        <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
-      </v-list-item-content>
-    </v-list-item>
-
-    <v-divider></v-divider>
-                       <v-list-item two-line>
-      <v-list-item-content>
-                 <v-card-actions>
-                     <v-row>
-               </v-row>
+  <div class="finals">
+    <v-col class="champcol">
+      <v-card
+      max-width="400"
+      class="mb-10"
+      >
+        <v-list-item>
+          <v-list-item-avatar color="grey"></v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title class="headline">{{this.champion}}</v-list-item-title>
+            <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+        <v-divider></v-divider>
+        <v-list-item two-line>
+          <v-list-item-content>
+            <v-card-actions>
+              <v-row>
+              </v-row>
             </v-card-actions>
-            </v-list-item-content>
-                  </v-list-item>
-            </v-card>
-            </v-col>
-            </div>
+          </v-list-item-content>
+        </v-list-item>
+      </v-card>
+    </v-col>
+  </div>
 </template>
 
 <script>

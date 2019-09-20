@@ -1,15 +1,14 @@
 <template>
     <div>
-          <div class="text-center">
-    <v-avatar>
-      <img :src="this.picture" alt="avatar">
-    </v-avatar>
-<progress :value="UploadValue" max="100" id="uploader">0%</progress>
-<input type="file" @change="onFileSelected"/>
-<button @click="onUpload"> upload </button>
+        <div class="text-center">
+            <v-avatar>
+                <img :src="this.picture" alt="avatar">
+            </v-avatar>
+            <progress :value="UploadValue" max="100" id="uploader">0%</progress>
+            <input type="file" @change="onFileSelected"/>
+            <button @click="onUpload"> upload </button>
+        </div>
     </div>
-    </div>
-
 </template>
 
 <script>
@@ -50,23 +49,22 @@ import firebase from 'firebase'
                          console.log(this.picture)
 
                          firebase.firestore().collection("users").add({
-    image: this.picture,
-    id: this.user.uid
+                    image: this.picture,
+                    id: this.user.uid
 
-})
-.then(function(docRef) {
-    console.log("Document written with ID: ", docRef.id);
-    
-})
-.catch(function(error) {
-    console.error("Error adding document: ", error);
-});
+                })
+                .then(function(docRef) {
+                    console.log("Document written with ID: ", docRef.id);
+                })
+                .catch(function(error) {
+                    console.error("Error adding document: ", error);
+                });
 
-                     });;
-                 });
-                }
-            }
+                });;
+            });
         }
+    }
+}
     
 </script>
 

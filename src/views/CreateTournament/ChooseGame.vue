@@ -1,20 +1,20 @@
 <template>
     <div>
-<h1> Select a game</h1>
-<v-container>
-    <v-row>
-        <v-col cols="4" v-for="game in games" :key="game.id">
-       <v-card >
-           <v-img :src="game.image">
-              
-           </v-img>
-           <v-card-title>
-               {{game.name}}
-           </v-card-title>
-       </v-card>
-        </v-col>
-    </v-row>
-</v-container>
+        <h1> Select a game </h1>
+        <v-container>
+            <v-row>
+                <v-col cols="4" v-for="game in games" :key="game.id">
+                    <v-card >
+                        <v-img :src="game.image">
+                        
+                        </v-img>
+                        <v-card-title>
+                        {{game.name}}
+                        </v-card-title>
+                    </v-card>
+                </v-col>
+            </v-row>
+        </v-container>
     </div>
 </template>
 
